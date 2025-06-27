@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "name": "BEN-BOT",
+    "repoUrl": "https://github.com/NOTHING-MD420/project-test",
+    "docs": "https://pair-test-estq.onrender.com",
+    "status": "approved",
+    "byUser": "admin"
+  }
+]
