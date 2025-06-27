@@ -116,6 +116,18 @@ app.get('/api/botrepos', (req, res) => {
   res.json(repos);
 });
 
+// PUT /api/botrepos
+app.put('/api/botrepos', (req, res) => {
+  const repos = req.body;
+  if (!Array.isArray(repos)) {
+    return res.status(400).json({ message: 'Expected array of repos' });
+  }
+  // ذخیره در فایل یا دیتابیس واقعی
+  // در اینجا فرض فایل
+  writeJsonFile(BOTREPOS_FILE, repos);
+  res.json({ message: 'Bot repos updated' });
+});
+
 app.get('/api/botrepos/:name', (req, res) => {
   const repos = readJsonFile(BOTREPOS_FILE);
   const repo = repos.find(r => r.name === req.params.name);

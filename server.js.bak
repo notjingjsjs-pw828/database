@@ -65,6 +65,14 @@ app.delete('/api/users/:username', (req, res) => {
 
 // ----------- BOTS -------------
 
+app.delete('/api/bots/:name', (req, res) => {
+  let bots = readJsonFile(BOTS_FILE);
+  const newBots = bots.filter(b => b.name !== req.params.name);
+  if (newBots.length === bots.length) return res.status(404).json({ message: 'Bot not found' });
+  writeJsonFile(BOTS_FILE, newBots);
+  res.json({ message: 'Bot deleted' });
+});
+
 app.get('/api/bots', (req, res) => {
   const bots = readJsonFile(BOTS_FILE);
   res.json(bots);
